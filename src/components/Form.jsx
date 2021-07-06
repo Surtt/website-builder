@@ -1,8 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
 import { switchLayouts } from '../slices/layouts';
 
 const Form = () => {
   // const currentLayout = useSelector((state) => state.layoutsInfo.layout);
+
+  const formik = useFormik({
+    initialValues: {
+      grid: 'landing',
+    },
+  });
   const dispatch = useDispatch();
 
   const handleChangeLayout = (name) => {
@@ -12,7 +19,7 @@ const Form = () => {
     <form className="grid-select">
       <h2 className="grid-select__header">Выберите сетку сайта</h2>
 
-      <input className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-landing" checked />
+      <input onClick={() => handleChangeLayout('landing')} onChange={formik.handleChange} className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-landing" value="landing" checked={formik.values.grid === 'landing'} />
       <label htmlFor="grid-landing" className="grid-select__btn">
         <span className="grid-select__text">Лендинг</span>
         <svg className="grid-select__img" width="240" height="132" viewBox="0 0 240 132" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +29,7 @@ const Form = () => {
         </svg>
       </label>
 
-      <input onClick={() => handleChangeLayout('blog')} className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-blog" />
+      <input onClick={() => handleChangeLayout('blog')} onChange={formik.handleChange} className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-blog" value="blog" checked={formik.values.grid === 'blog'} />
       <label htmlFor="grid-blog" className="grid-select__btn">
         <span className="grid-select__text">Блог</span>
         <svg className="grid-select__img" width="240" height="132" viewBox="0 0 240 132" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +40,7 @@ const Form = () => {
         </svg>
       </label>
 
-      <input className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-shop" />
+      <input onClick={() => handleChangeLayout('shop')} onChange={formik.handleChange} className="grid-select__radio visually-hidden" type="radio" name="grid" id="grid-shop" value="shop" checked={formik.values.grid === 'shop'} />
       <label htmlFor="grid-shop" className="grid-select__btn">
         <span className="grid-select__text">Магазин</span>
         <svg className="grid-select__img" width="240" height="132" viewBox="0 0 240 132" fill="none" xmlns="http://www.w3.org/2000/svg">
