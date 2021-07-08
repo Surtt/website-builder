@@ -1,9 +1,18 @@
-const Layout = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { landingShowHeaderPanel } from '../slices/panels';
+
+const Landing = () => {
+  const currentPanel = useSelector((state) => state.panelsInfo.isOpen);
+  const dispatch = useDispatch();
+  const handleShowPanel = () => {
+    dispatch(landingShowHeaderPanel(!currentPanel));
+  };
+  const cn = currentPanel === true ? 'choose-elem' : 'choose-elem--hide';
   return (
     <div className="layout layout--landing">
       <header className="header header--empty">
         <p className="placeholder">Header</p>
-        <button type="button" className="add-btn">
+        <button onClick={handleShowPanel} type="button" className="add-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
             <path fillRule="evenodd" clipRule="evenodd"
               d="M0 20C0 8.96 8.96 0 20 0C31.04 0 40 8.96 40 20C40 31.04 31.04 40 20 40C8.96 40 0 31.04 0 20ZM22 22H30V18H22V9.99999H18V18H10V22H18V30H22V22Z"
@@ -11,7 +20,7 @@ const Layout = () => {
           </svg>
         </button>
 
-        <div className="choose-elem ">
+        <div className={cn}>
           <button type="button" className="choose-elem__btn">Заголовок H1</button>
           <button type="button" className="choose-elem__btn">Заголовок H2</button>
           <button type="button" className="choose-elem__btn">Заголовок H3</button>
@@ -24,7 +33,7 @@ const Layout = () => {
 
       <div className="content content-1 content--empty">
         <p className="placeholder">Content</p>
-        <button type="button" className="add-btn">
+        <button onClick={handleShowPanel} type="button" className="add-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
             <path fillRule="evenodd" clipRule="evenodd"
               d="M0 20C0 8.96 8.96 0 20 0C31.04 0 40 8.96 40 20C40 31.04 31.04 40 20 40C8.96 40 0 31.04 0 20ZM22 22H30V18H22V9.99999H18V18H10V22H18V30H22V22Z"
@@ -32,7 +41,7 @@ const Layout = () => {
           </svg>
         </button>
 
-        <div className="choose-elem ">
+        <div className={cn}>
           <button type="button" className="choose-elem__btn">Заголовок H1</button>
           <button type="button" className="choose-elem__btn">Заголовок H2</button>
           <button type="button" className="choose-elem__btn">Заголовок H3</button>
@@ -66,4 +75,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default Landing;

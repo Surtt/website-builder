@@ -1,5 +1,4 @@
 import Form from './components/Form';
-import Layout from './components/Layout';
 import './App.css';
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
     <>
       <h1 className="visually-hidden">Конструктор сайтов</h1>
       <Form />
-      <Layout />
     </>
   );
 }

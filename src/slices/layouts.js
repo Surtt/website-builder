@@ -1,17 +1,16 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const layoutsInfo = createSlice({
   name: 'layoutsInfo',
   initialState: { layout: 'landing' },
   reducers: {
-    switchLayouts: (state, action) => {
+    switchLayout: (state, action) => {
       const layout = action.payload;
       state.layout = layout;
-      console.log(current(state));
     },
   },
 });
 
-export const { switchLayouts } = layoutsInfo.actions;
+export const { switchLayout } = layoutsInfo.actions;
 
 export default layoutsInfo.reducer;
